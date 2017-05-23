@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.xiaohuodui.b2c.root.product.mapper.ProductSpecMapper">
-  <resultMap id="BaseResultMap" type="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+<mapper namespace="org.xyy.b2c.root.product.mapper.ProductSpecMapper">
+  <resultMap id="BaseResultMap" type="org.xyy.b2c.leaf.product.model.ProductSpec">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="spec_keys" jdbcType="VARCHAR" property="specKeys" />
@@ -16,7 +16,7 @@
     <result column="updated" jdbcType="BIGINT" property="updated" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.xyy.b2c.leaf.product.model.ProductSpec">
     <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -38,7 +38,7 @@
     delete from product_spec
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+  <insert id="insert" parameterType="org.xyy.b2c.leaf.product.model.ProductSpec">
     insert into product_spec (id, product_id, spec_keys, 
       spec_values, sku_id, inventory, 
       price, display_price, cover, 
@@ -50,7 +50,7 @@
       #{weight,jdbcType=INTEGER}, #{created,jdbcType=BIGINT}, #{updated,jdbcType=BIGINT}, 
       #{deleted,jdbcType=INTEGER}, #{imgs,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+  <insert id="insertSelective" parameterType="org.xyy.b2c.leaf.product.model.ProductSpec">
     insert into product_spec
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -141,7 +141,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+  <update id="updateByPrimaryKeySelective" parameterType="org.xyy.b2c.leaf.product.model.ProductSpec">
     update product_spec
     <set>
       <if test="productId != null">
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.xyy.b2c.leaf.product.model.ProductSpec">
     update product_spec
     set product_id = #{productId,jdbcType=INTEGER},
       spec_keys = #{specKeys,jdbcType=VARCHAR},
@@ -203,7 +203,7 @@
       imgs = #{imgs,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+  <update id="updateByPrimaryKey" parameterType="org.xyy.b2c.leaf.product.model.ProductSpec">
     update product_spec
     set product_id = #{productId,jdbcType=INTEGER},
       spec_keys = #{specKeys,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.xiaohuodui.b2c.root.product.mapper.CategoryMapper">
-  <resultMap id="BaseResultMap" type="cn.xiaohuodui.b2c.leaf.product.model.Category">
+<mapper namespace="org.xyy.b2c.root.product.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="org.xyy.b2c.leaf.product.model.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="des" jdbcType="VARCHAR" property="des" />
@@ -23,7 +23,7 @@
     delete from product_category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.xiaohuodui.b2c.leaf.product.model.Category">
+  <insert id="insert" parameterType="org.xyy.b2c.leaf.product.model.Category">
     insert into product_category (id, name, des, 
       img, parent_id, created, 
       deleted)
@@ -31,7 +31,7 @@
       #{img,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{created,jdbcType=BIGINT}, 
       #{deleted,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.Category">
+  <insert id="insertSelective" parameterType="org.xyy.b2c.leaf.product.model.Category">
     insert into product_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.Category">
+  <update id="updateByPrimaryKeySelective" parameterType="org.xyy.b2c.leaf.product.model.Category">
     update product_category
     <set>
       <if test="name != null">
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.xiaohuodui.b2c.leaf.product.model.Category">
+  <update id="updateByPrimaryKey" parameterType="org.xyy.b2c.leaf.product.model.Category">
     update product_category
     set name = #{name,jdbcType=VARCHAR},
       des = #{des,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.xiaohuodui.b2c.root.product.mapper.ProductCollectionMapper">
-  <resultMap id="BaseResultMap" type="cn.xiaohuodui.b2c.leaf.product.model.ProductCollection">
+<mapper namespace="org.xyy.b2c.root.product.mapper.ProductCollectionMapper">
+  <resultMap id="BaseResultMap" type="org.xyy.b2c.leaf.product.model.ProductCollection">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="des" jdbcType="VARCHAR" property="des" />
@@ -24,7 +24,7 @@
     delete from product_collection
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductCollection">
+  <insert id="insert" parameterType="org.xyy.b2c.leaf.product.model.ProductCollection">
     insert into product_collection (id, name, des, 
       cover, sort, created, 
       updated, deleted)
@@ -32,7 +32,7 @@
       #{cover,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{created,jdbcType=BIGINT}, 
       #{updated,jdbcType=BIGINT}, #{deleted,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductCollection">
+  <insert id="insertSelective" parameterType="org.xyy.b2c.leaf.product.model.ProductCollection">
     insert into product_collection
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductCollection">
+  <update id="updateByPrimaryKeySelective" parameterType="org.xyy.b2c.leaf.product.model.ProductCollection">
     update product_collection
     <set>
       <if test="name != null">
@@ -114,7 +114,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductCollection">
+  <update id="updateByPrimaryKey" parameterType="org.xyy.b2c.leaf.product.model.ProductCollection">
     update product_collection
     set name = #{name,jdbcType=VARCHAR},
       des = #{des,jdbcType=VARCHAR},

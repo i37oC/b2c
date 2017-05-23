@@ -19,7 +19,7 @@ spring:
     validationQuery: SELECT 1 FROM DUAL
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: cn.xiaohuodui.product.model
+  type-aliases-package: org.xyy.product.model
 server:
   port: 9000
 logging:

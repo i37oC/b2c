@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xiaohuodui.b2c.root.product.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="cn.xiaohuodui.b2c.leaf.product.model.Product">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
+    <result column="product_num" jdbcType="VARCHAR" property="productNum" />
+    <result column="models" jdbcType="VARCHAR" property="models" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="cate_id1" jdbcType="INTEGER" property="cateId1" />
+    <result column="cate_id2" jdbcType="INTEGER" property="cateId2" />
+    <result column="cate_id3" jdbcType="INTEGER" property="cateId3" />
+    <result column="price_min" jdbcType="BIGINT" property="priceMin" />
+    <result column="price_max" jdbcType="BIGINT" property="priceMax" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="created" jdbcType="BIGINT" property="created" />
+    <result column="updated" jdbcType="BIGINT" property="updated" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.xiaohuodui.b2c.leaf.product.model.ProductWithBLOBs">
+    <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, intro, product_num, models, brand, cate_id1, cate_id2, cate_id3, price_min, 
+    price_max, cover, status, created, updated, deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    imgs, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductWithBLOBs">
+    insert into product (id, name, intro, 
+      product_num, models, brand, 
+      cate_id1, cate_id2, cate_id3, 
+      price_min, price_max, cover, 
+      status, created, updated, 
+      deleted, imgs, description
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, 
+      #{productNum,jdbcType=VARCHAR}, #{models,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+      #{cateId1,jdbcType=INTEGER}, #{cateId2,jdbcType=INTEGER}, #{cateId3,jdbcType=INTEGER}, 
+      #{priceMin,jdbcType=BIGINT}, #{priceMax,jdbcType=BIGINT}, #{cover,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{created,jdbcType=BIGINT}, #{updated,jdbcType=BIGINT}, 
+      #{deleted,jdbcType=BIT}, #{imgs,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductWithBLOBs">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="intro != null">
+        intro,
+      </if>
+      <if test="productNum != null">
+        product_num,
+      </if>
+      <if test="models != null">
+        models,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="cateId1 != null">
+        cate_id1,
+      </if>
+      <if test="cateId2 != null">
+        cate_id2,
+      </if>
+      <if test="cateId3 != null">
+        cate_id3,
+      </if>
+      <if test="priceMin != null">
+        price_min,
+      </if>
+      <if test="priceMax != null">
+        price_max,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null">
+        #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="models != null">
+        #{models,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="cateId1 != null">
+        #{cateId1,jdbcType=INTEGER},
+      </if>
+      <if test="cateId2 != null">
+        #{cateId2,jdbcType=INTEGER},
+      </if>
+      <if test="cateId3 != null">
+        #{cateId3,jdbcType=INTEGER},
+      </if>
+      <if test="priceMin != null">
+        #{priceMin,jdbcType=BIGINT},
+      </if>
+      <if test="priceMax != null">
+        #{priceMax,jdbcType=BIGINT},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductWithBLOBs">
+    update product
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null">
+        product_num = #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="models != null">
+        models = #{models,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="cateId1 != null">
+        cate_id1 = #{cateId1,jdbcType=INTEGER},
+      </if>
+      <if test="cateId2 != null">
+        cate_id2 = #{cateId2,jdbcType=INTEGER},
+      </if>
+      <if test="cateId3 != null">
+        cate_id3 = #{cateId3,jdbcType=INTEGER},
+      </if>
+      <if test="priceMin != null">
+        price_min = #{priceMin,jdbcType=BIGINT},
+      </if>
+      <if test="priceMax != null">
+        price_max = #{priceMax,jdbcType=BIGINT},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductWithBLOBs">
+    update product
+    set name = #{name,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      product_num = #{productNum,jdbcType=VARCHAR},
+      models = #{models,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      cate_id1 = #{cateId1,jdbcType=INTEGER},
+      cate_id2 = #{cateId2,jdbcType=INTEGER},
+      cate_id3 = #{cateId3,jdbcType=INTEGER},
+      price_min = #{priceMin,jdbcType=BIGINT},
+      price_max = #{priceMax,jdbcType=BIGINT},
+      cover = #{cover,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      created = #{created,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=BIT},
+      imgs = #{imgs,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xiaohuodui.b2c.leaf.product.model.Product">
+    update product
+    set name = #{name,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      product_num = #{productNum,jdbcType=VARCHAR},
+      models = #{models,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      cate_id1 = #{cateId1,jdbcType=INTEGER},
+      cate_id2 = #{cateId2,jdbcType=INTEGER},
+      cate_id3 = #{cateId3,jdbcType=INTEGER},
+      price_min = #{priceMin,jdbcType=BIGINT},
+      price_max = #{priceMax,jdbcType=BIGINT},
+      cover = #{cover,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      created = #{created,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

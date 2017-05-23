@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xiaohuodui.b2c.root.product.mapper.ProductSpecMapper">
+  <resultMap id="BaseResultMap" type="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="spec_keys" jdbcType="VARCHAR" property="specKeys" />
+    <result column="spec_values" jdbcType="VARCHAR" property="specValues" />
+    <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="display_price" jdbcType="DECIMAL" property="displayPrice" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="created" jdbcType="BIGINT" property="created" />
+    <result column="updated" jdbcType="BIGINT" property="updated" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    <result column="imgs" jdbcType="LONGVARCHAR" property="imgs" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_id, spec_keys, spec_values, sku_id, inventory, price, display_price, 
+    cover, weight, created, updated, deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    imgs
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product_spec
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_spec
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    insert into product_spec (id, product_id, spec_keys, 
+      spec_values, sku_id, inventory, 
+      price, display_price, cover, 
+      weight, created, updated, 
+      deleted, imgs)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{specKeys,jdbcType=VARCHAR}, 
+      #{specValues,jdbcType=VARCHAR}, #{skuId,jdbcType=VARCHAR}, #{inventory,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{displayPrice,jdbcType=DECIMAL}, #{cover,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=INTEGER}, #{created,jdbcType=BIGINT}, #{updated,jdbcType=BIGINT}, 
+      #{deleted,jdbcType=INTEGER}, #{imgs,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    insert into product_spec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="specKeys != null">
+        spec_keys,
+      </if>
+      <if test="specValues != null">
+        spec_values,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="displayPrice != null">
+        display_price,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="specKeys != null">
+        #{specKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="specValues != null">
+        #{specValues,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="displayPrice != null">
+        #{displayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    update product_spec
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="specKeys != null">
+        spec_keys = #{specKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="specValues != null">
+        spec_values = #{specValues,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="displayPrice != null">
+        display_price = #{displayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    update product_spec
+    set product_id = #{productId,jdbcType=INTEGER},
+      spec_keys = #{specKeys,jdbcType=VARCHAR},
+      spec_values = #{specValues,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      display_price = #{displayPrice,jdbcType=DECIMAL},
+      cover = #{cover,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      created = #{created,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=INTEGER},
+      imgs = #{imgs,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.xiaohuodui.b2c.leaf.product.model.ProductSpec">
+    update product_spec
+    set product_id = #{productId,jdbcType=INTEGER},
+      spec_keys = #{specKeys,jdbcType=VARCHAR},
+      spec_values = #{specValues,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      display_price = #{displayPrice,jdbcType=DECIMAL},
+      cover = #{cover,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=INTEGER},
+      created = #{created,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=BIGINT},
+      deleted = #{deleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
